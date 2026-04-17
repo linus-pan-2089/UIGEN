@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -14,6 +14,7 @@ import { CodeEditor } from "@/components/editor/CodeEditor";
 import { PreviewFrame } from "@/components/preview/PreviewFrame";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { HeaderActions } from "@/components/HeaderActions";
+import { Maximize2, Minimize2 } from "lucide-react";
 
 interface MainContentProps {
   user?: {
@@ -32,6 +33,22 @@ interface MainContentProps {
 
 export function MainContent({ user, project }: MainContentProps) {
   const [activeView, setActiveView] = useState<"preview" | "code">("preview");
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const previewContainerRef = useRef<HTMLDivElement>(null);
+
+  const toggleFullscreen = useCallback(async () => {
+    if (!document.fullscreenElement) {
+      await previewContainerRef.current?.requestFullscreen();
+    } else {
+      await document.exitFullscreen();
+    }
+  }, []);
+
+  useEffect(() => {
+    const onFullscreenChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
 
   return (
     <FileSystemProvider initialData={project?.data}>
@@ -77,8 +94,15 @@ export function MainContent({ user, project }: MainContentProps) {
                 {/* Content Area */}
                 <div className="flex-1 overflow-hidden bg-neutral-50">
                   {activeView === "preview" ? (
-                    <div className="h-full bg-white">
+                    <div ref={previewContainerRef} className="relative h-full bg-white">
                       <PreviewFrame />
+                      <button
+                        onClick={toggleFullscreen}
+                        className="absolute top-3 right-3 z-10 p-1.5 rounded-md bg-white/80 border border-neutral-200 text-neutral-500 hover:text-neutral-900 hover:bg-white shadow-sm transition-all"
+                        title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                      >
+                        {isFullscreen ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
+                      </button>
                     </div>
                   ) : (
                     <ResizablePanelGroup
