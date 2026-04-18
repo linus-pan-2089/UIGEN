@@ -1,8 +1,13 @@
 {
-    "Permissions": {
-        "allow": [
-            "mcp__playwright"
-        ],
-        "deny": []
-    }
+  "Permissions": {
+    "allow": [
+      "mcp__playwright"
+    ],
+    "deny": []
+  },
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls *)"
+    ]
+  }
 }

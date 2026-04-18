@@ -1,2 +1,6 @@
 "hello from B" 
 Hello from A
+This is a message from B.
+He said,"How are you doing? A , It's been a long time since I saw you last time."
+And he want to know friend A "What have you been upto these days?" 
+This message is from B.
