@@ -1,8 +1,12 @@
 "hello from B" 
 ##This is my chagnge from B
 somefunction():
+#from been
+
 statment 1
 stamtent 2
+we eant to fix the problems
+
 statement 3
 
 Hello from A
@@ -11,6 +15,11 @@ He said,"How are you doing? A , It's been a long time since I saw you last time.
 foo():
 B: stamte1
 B: stamement2
+fucntion():
+This sis a statment to explain features
+statment 2
+stiatme 3
+
 B: statement 3
 And he want to know friend A "What have you been upto these days?" 
 This message is from B.
@@ -22,5 +31,10 @@ atatment1
 statme 2
 statme 3
 He said "hello, B ! where are you from?"
+poo():
+statnent2
+statement 3
+sktmeems()L:
+adkfa;dj;a 
 And he want to know "What are you upto these days"
 this message is from A.
