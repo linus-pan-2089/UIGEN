@@ -1,1 +1,2 @@
 "hello from B" 
+Hello from A
