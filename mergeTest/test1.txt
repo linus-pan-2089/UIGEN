@@ -4,3 +4,8 @@ This is a message from B.
 He said,"How are you doing? A , It's been a long time since I saw you last time."
 And he want to know friend A "What have you been upto these days?" 
 This message is from B.
+
+This is a message from a
+He said "hello, B ! where are you from?"
+And he want to know "What are you upto these days"
+this message is from A.
