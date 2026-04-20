@@ -2,6 +2,18 @@
 ##This is my chagnge from B
 somefunction():
 #from been
+import { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { SignInForm } from "./SignInForm";
+import { SignUpForm } from "./SignUpForm";
+
 
 statment 1
 export async function createProject(input: CreateProjectInput) {
@@ -27,6 +39,22 @@ we eant to fix the problems
 statement 3
 import { ChangeEvent, FormEvent, KeyboardEvent } from "react";
 import { Send } from "lucide-react";
+
+export function AuthDialog({
+  open,
+  onOpenChange,
+  defaultMode = "signin",
+}: AuthDialogProps) {
+  const [mode, setMode] = useState<"signin" | "signup">(defaultMode);
+
+  useEffect(() => {
+    setMode(defaultMode);
+  }, [defaultMode]);
+
+  const handleSuccess = () => {
+    onOpenChange(false);
+  };
+
 
 interface MessageInputProps {
   input: string;
@@ -57,6 +85,11 @@ He said,"How are you doing? A , It's been a long time since I saw you last time.
 foo():
 B: stamte1
 B: stamement2
+#this is will be refractored
+statement 1
+statement 2
+statement 3
+
 fucntion():
 This sis a statment to explain features
 statment 2
