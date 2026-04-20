@@ -15,6 +15,12 @@ goo():
 A: statement2
 A: staiemejd3
 A: statemnent 4
+export function AuthDialog({
+  open,
+  onOpenChange,
+  defaultMode = "signin",
+}: AuthDialogProps) {
+  const [mode, setMode] = useState<"signin" | "signup">(defaultMode);
 
 we eant to fix the problems
 
@@ -30,6 +36,11 @@ fucntion():
 This sis a statment to explain features
 statment 2
 stiatme 3
+interface AuthDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  defaultMode?: "signin" | "signup";
+}
 
 #this is wrong, i am gonna do it on my own way
 
@@ -58,6 +69,25 @@ goo3():
 A: statemet1:
 A: statemet 3
 Sstatemelke3
+export function SignInForm({ onSuccess }: SignInFormProps) {
+  const { signIn, isLoading } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    const result = await signIn(email, password);
+
+    if (result.success) {
+      // The redirect is handled by the hook
+      onSuccess?.();
+    } else {
+      setError(result.error || "Failed to sign in");
+    }
+  };
 statme 2
 statme 3
 He said "hello, B ! where are you from?"
