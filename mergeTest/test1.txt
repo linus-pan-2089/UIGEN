@@ -4,6 +4,12 @@ somefunction():
 #from been
 
 statment 1
+export async function createProject(input: CreateProjectInput) {
+  const session = await getSession();
+  
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
 stamtent 2
 goo():
 A: statement2
@@ -30,6 +36,14 @@ stiatme 3
 goo1():
 dlakfa;lkfjlad
 statemetn2
+const project = await prisma.project.create({
+    data: {
+      name: input.name,
+      userId: session.userId,
+      messages: JSON.stringify(input.messages),
+      data: JSON.stringify(input.data),
+    },
+  });
 statement3
 satement4
 B: statement 3
@@ -52,6 +66,12 @@ statnent2
 statement 3
 sktmeems()L:
 #this is nonsense adkfa;dj;a 
+export async function getProject(projectId: string) {
+  const session = await getSession();
+  
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
 A: confusing feature
 whan have you been doing?
 why the bugs still there?
