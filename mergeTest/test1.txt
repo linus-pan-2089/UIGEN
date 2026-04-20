@@ -25,6 +25,31 @@ export function AuthDialog({
 we eant to fix the problems
 
 statement 3
+import { ChangeEvent, FormEvent, KeyboardEvent } from "react";
+import { Send } from "lucide-react";
+
+interface MessageInputProps {
+  input: string;
+  handleInputChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  isLoading: boolean;
+}
+
+export function MessageInput({
+  input,
+  handleInputChange,
+  handleSubmit,
+  isLoading,
+}: MessageInputProps) {
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      const form = e.currentTarget.form;
+      if (form) {
+        form.requestSubmit();
+      }
+    }
+  };
 
 Hello from A
 This is a message from B.
@@ -104,6 +129,21 @@ export async function getProject(projectId: string) {
   }
 A: confusing feature
 whan have you been doing?
+export function ChatInterface() {
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { messages, input, handleInputChange, handleSubmit, status } = useChat();
+
+  // Auto-scroll to bottom when new messages arrive
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      const scrollContainer = scrollAreaRef.current.querySelector(
+        "[data-radix-scroll-area-viewport]"
+      );
+      if (scrollContainer) {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      }
+    }
+  }, [messages]);
 why the bugs still there?
 And he want to know "What are you upto these days"
 this message is from A.
