@@ -10,6 +10,25 @@ export async function createProject(input: CreateProjectInput) {
   if (!session) {
     throw new Error("Unauthorized");
   }
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handlePostSignIn = async () => {
+    // Get any anonymous work
+    const anonWork = getAnonWorkData();
+
+    if (anonWork && anonWork.messages.length > 0) {
+      // Create a project with the anonymous work
+      const project = await createProject({
+        name: `Design from ${new Date().toLocaleTimeString()}`,
+        messages: anonWork.messages,
+        data: anonWork.fileSystemData,
+      });
+
+      clearAnonWork();
+      router.push(`/${project.id}`);
+      return;
+    }
+
 stamtent 2
 goo():
 A: statement2
@@ -57,6 +76,20 @@ He said,"How are you doing? A , It's been a long time since I saw you last time.
 foo():
 B: stamte1
 B: stamement2
+const signIn = async (email: string, password: string) => {
+    setIsLoading(true);
+    try {
+      const result = await signInAction(email, password);
+
+      if (result.success) {
+        await handlePostSignIn();
+      }
+
+      return result;
+    } finally {
+      setIsLoading(false);
+    }
+  };
 fucntion():
 This sis a statment to explain features
 statment 2
@@ -93,6 +126,11 @@ atatment1
 goo3():
 A: statemet1:
 A: statemet 3
+#This is bad, should rewrite it.
+Statment 1
+statement 2
+stamte eant
+statmement 4
 Sstatemelke3
 export function SignInForm({ onSuccess }: SignInFormProps) {
   const { signIn, isLoading } = useAuth();
